@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://dio6s5cdg4pkr"]
+
+[ext_resource type="Texture2D" uid="uid://cj4occs43geb2" path="res://2D/GUI/back.png" id="1_lamt1"]
+[ext_resource type="PackedScene" uid="uid://clvxw8ck6npg2" path="res://Scenes/Scenes/Test.tscn" id="1_nly6h"]
+[ext_resource type="Texture2D" uid="uid://bpnumch0wul5t" path="res://2D/GUI/front.png" id="3_srah6"]
+
+[node name="Root" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -5.0
+offset_top = -6.0
+offset_right = 806.0
+offset_bottom = 607.0
+color = Color(0.866667, 0.866667, 0.866667, 1)
+metadata/_edit_lock_ = true
+
+[node name="Back" type="Sprite2D" parent="."]
+position = Vector2(401, 301)
+texture = ExtResource("1_lamt1")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_left = 81.0
+offset_top = 51.0
+offset_right = 721.0
+offset_bottom = 531.0
+metadata/_edit_lock_ = true
+
+[node name="SubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(640, 480)
+size_2d_override_stretch = true
+render_target_update_mode = 4
+
+[node name="Test" parent="SubViewportContainer/SubViewport" instance=ExtResource("1_nly6h")]
+
+[node name="Front" type="Sprite2D" parent="."]
+position = Vector2(401, 300)
+texture = ExtResource("3_srah6")
