@@ -10,7 +10,7 @@ albedo_color = Color(0.776471, 0.133422, 0.166992, 1)
 [sub_resource type="SphereShape3D" id="SphereShape3D_kawue"]
 radius = 0.275857
 
-[node name="EnemyBullets" type="CharacterBody3D"]
+[node name="EnemyBullets" type="CharacterBody3D" groups=["EnemyBullets"]]
 collision_layer = 32
 collision_mask = 41
 script = ExtResource("1_dvh53")

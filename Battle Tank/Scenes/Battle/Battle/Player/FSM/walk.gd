@@ -12,6 +12,10 @@ func Transition():
 		%FSM.current = %FSM.get_node("SHOOT")
 		%FSM.current.ShootBullet()
 	
+	if Input.is_action_just_released("BOMB"):
+		%FSM.current = %FSM.get_node("BOMB")
+		%FSM.current.Start()
+	
 	if Input.is_action_pressed("DASH") and DataPaths.GUI.GetDash() > 1:
 		%FSM.current = %FSM.get_node("DASH")
 	

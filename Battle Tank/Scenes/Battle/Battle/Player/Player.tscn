@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://78ov1uttubnv"]
+[gd_scene load_steps=27 format=3 uid="uid://78ov1uttubnv"]
 
 [ext_resource type="Script" path="res://Scenes/Battle/Battle/Player/player.gd" id="1_ehwsy"]
 [ext_resource type="Script" path="res://Scenes/Battle/Battle/Player/FSM/fsm.gd" id="2_1d7kf"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://dwpjyr3o64nwq" path="res://Scenes/Battle/Battle/Player Weapons/bullet/Bullet.tscn" id="7_gfisj"]
 [ext_resource type="Script" path="res://Scenes/Battle/Battle/Player/FSM/dash.gd" id="8_03wq4"]
 [ext_resource type="Script" path="res://Scenes/Battle/Battle/Player/FSM/hit.gd" id="9_a68ni"]
+[ext_resource type="Script" path="res://Scenes/Battle/Battle/Player/FSM/bomb.gd" id="11_a8max"]
+[ext_resource type="PackedScene" uid="uid://dx25py6jkqpk5" path="res://Scenes/Battle/Battle/Player/Bomb/bomb.tscn" id="12_1uviq"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_irwv8"]
 size = Vector3(0.511323, 0.437447, 0.877329)
@@ -236,6 +238,13 @@ script = ExtResource("9_a68ni")
 [node name="Timer" type="Timer" parent="FSM/HIT"]
 one_shot = true
 
+[node name="BOMB" type="Node" parent="FSM"]
+script = ExtResource("11_a8max")
+Bomb = ExtResource("12_1uviq")
+
+[node name="Timer" type="Timer" parent="FSM/BOMB"]
+one_shot = true
+
 [node name="Anims" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_6dpec")
@@ -247,10 +256,32 @@ active = false
 root_node = NodePath("%AnimTree/..")
 tree_root = SubResource("AnimationNodeStateMachine_lr85n")
 anim_player = NodePath("../Anims")
+parameters/current_length = false
+parameters/current_position = false
+parameters/current_delta = false
 parameters/conditions/HIT = false
+parameters/End/current_length = null
+parameters/End/current_position = null
+parameters/End/current_delta = null
+parameters/HIT/current_length = null
+parameters/HIT/current_position = null
+parameters/HIT/current_delta = null
+parameters/MOVE/current_length = 0
+parameters/MOVE/current_position = 0
+parameters/MOVE/current_delta = 0
 parameters/MOVE/blend_position = 0.0
+parameters/MOVE/0/current_length = null
+parameters/MOVE/0/current_position = null
+parameters/MOVE/0/current_delta = null
+parameters/MOVE/1/current_length = null
+parameters/MOVE/1/current_position = null
+parameters/MOVE/1/current_delta = null
+parameters/Start/current_length = null
+parameters/Start/current_position = null
+parameters/Start/current_delta = null
 
 [connection signal="timeout" from="FSM/SHOOT/Timer" to="FSM/SHOOT" method="_on_timer_timeout"]
 [connection signal="timeout" from="FSM/HIT/Timer" to="FSM/HIT" method="_on_timer_timeout"]
+[connection signal="timeout" from="FSM/BOMB/Timer" to="FSM/BOMB" method="_on_timer_timeout"]
 
 [editable path="player"]
